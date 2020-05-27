@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 233
 subtitle: ''
 description: ''
 keywords:
@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
-root: /
+url: https://minghaooo.github.io
+root: /myblog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -93,7 +93,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: anatole-core
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
