@@ -99,3 +99,34 @@ theme: anatole-core
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
+
+live2d:
+  enable: true
+  # enable: false
+  pluginRootPath: live2dw/ # Root path of plugin to be on the site (Relative)
+  pluginJsPath: lib/ # JavaScript path related to plugin's root (Relative)
+  pluginModelPath: assets/ # Relative model path related to plugin's root (Relative)
+  scriptFrom: local # Default
+  # scriptFrom: jsdelivr # jsdelivr CDN
+  # scriptFrom: unpkg # unpkg CDN
+  # scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # Your custom url
+  tagMode: false # Whether only to replace live2d tag instead of inject to all pages
+  log: false # Whether to show logs in console
+  model:
+    #use: live2d-widget-model-epsilon2_1 #girl
+    #use: live2d-widget-model-haruto #水手
+    #use: live2d-widget-model-hijiki #黑猫
+   #use: live2d-widget-model-izumi #红衣
+    use: live2d-widget-model-koharu #水手女
+    #use: live2d-widget-model-tororo # 白猫
+    #use: live2d-widget-model-wanko
+    # use: ./wives/wanko # folder path relative to hexo base dir
+    # use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # Your custom url
+  display:
+    position: left
+    #width: 150
+    #height: 300
+  mobile:
+    show: true
+  react:
+    opacity: 0.8
