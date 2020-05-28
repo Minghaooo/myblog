@@ -8,7 +8,7 @@ subtitle: ''
 description: ''
 keywords:
 author: John Doe
-language: zh-cn
+language: zh-CN
 timezone: ''
 
 # URL
@@ -128,5 +128,6 @@ live2d:
     #height: 300
   mobile:
     show: true
+    position: right
   react:
     opacity: 0.85
