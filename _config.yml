@@ -8,13 +8,13 @@ subtitle: ''
 description: ''
 keywords:
 author: John Doe
-language: en
+language: zh-cn
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://minghaooo.github.io/
-root: /myblog
+url: https://minghaooo.github.io/myblog
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -30,11 +30,6 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-
-menu:
-  home: /
-  archives: /archives
-  tags: /tags
 
 # Writing
 new_post_name: :title.md # File name of new posts
