@@ -29,7 +29,7 @@ valine:
   serverURLs: 
 # main menu navigation
 menu:
-  home: /
+  home: /myblog
   archives: /archives
   about: /about
   categories: /categories
