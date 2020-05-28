@@ -28,7 +28,8 @@ valine:
   placeholder: 打死不转CS # comment box placeholder
   serverURLs: 
 
-
+menu:
+  home: /
   #commonweal: /404.html
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
