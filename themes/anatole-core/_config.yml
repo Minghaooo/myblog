@@ -27,13 +27,8 @@ valine:
   avatar: mp # avatar style https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
   placeholder: 打死不转CS # comment box placeholder
   serverURLs: 
-# main menu navigation
-menu:
-  home: /myblog
-  archives: /archives
-  about: /about
-  categories: /categories
-  tags: /myblog/tags
+
+
   #commonweal: /404.html
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
