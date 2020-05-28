@@ -1,11 +1,20 @@
 # 博客配置
 keywords: VLSI
 author: Minghaooo
-description: 打死不转CS。
-#<br> VLSI 大法好！
+description: 打死不转CS。<br> VLSI 大法好！
 avatar: /images/favicon.ico
 beian: 苏B备AE86号
 copyright: 1995 - 2020 
+
+
+# main menu navigation
+menu:
+  home: /
+  archives: /archives
+  #about: /about
+  #categories: /categories
+  tags: /tags
+  #commonweal: /404.html
 
 # 社交账号
 github: https://github.com/Minghaooo
@@ -14,6 +23,7 @@ zhihu: https://www.zhihu.com/people/tangmh1101
 #QQ: http://sighttp.qq.com/authd?IDKEY=1248439953
 
   
+
 # Valine 评论，如何配置请看官网 https://valine.js.org
 valine:
   enable: true # if you want use valine, please set enable: true
