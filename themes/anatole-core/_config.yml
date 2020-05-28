@@ -7,14 +7,7 @@ beian: 苏B备AE86号
 copyright: 1995 - 2020 
 
 
-# main menu navigation
-menu:
-  home: /
-  archives: /archives
-  about: /about
-  categories: /categories
-  tags: /../tags
-  #commonweal: /404.html
+
 
 # 社交账号
 github: https://github.com/Minghaooo
@@ -34,7 +27,14 @@ valine:
   avatar: mp # avatar style https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
   placeholder: 打死不转CS # comment box placeholder
   serverURLs: 
-
+# main menu navigation
+menu:
+  home: https://minghaooo.github.io/
+  archives: /archives
+  about: /about
+  categories: /categories
+  tags: /tags
+  #commonweal: /404.html
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
 # 获取统计JS代码放入 anatole-core/source/js/baidu-tongji.js
