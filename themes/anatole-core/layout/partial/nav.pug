@@ -2,9 +2,9 @@
   .nav
     li
       if is_home()
-        a.current(href="/myblog")= __('Home')					
+        a.current(href="/myblog/")= __('Home')					
       else
-        a(href="/myblog")= __('Home')	
+        a(href="/myblog/")= __('Home')	
 
     li
       if is_archive()
