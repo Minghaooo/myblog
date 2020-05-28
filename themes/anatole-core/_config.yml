@@ -29,7 +29,7 @@ valine:
   serverURLs: 
 # main menu navigation
 menu:
-  home: https://minghaooo.github.io/
+  home: /
   archives: /archives
   about: /about
   categories: /categories
