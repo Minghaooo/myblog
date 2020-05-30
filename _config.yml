@@ -7,7 +7,7 @@ title: 233
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: Minghaooo
 language: zh-CN
 timezone: ''
 
@@ -93,7 +93,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: anatole-core
+theme: next
+#anatole-core
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
