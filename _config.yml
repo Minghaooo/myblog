@@ -131,4 +131,4 @@ live2d:
     show: true
     position: right
   react:
-    opacity: 0.85
+    opacity: 0.95
