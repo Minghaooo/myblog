@@ -7,7 +7,5 @@ tags: 233
 	DesignVision Constrain 语句复习
 	JAVA CS400 学习
 	Algorithm CS577 算法
+	此外还要准备面试， 主要是VLSI方向。
 
-	VLSI:
-		FIFO:
-		UVM:
