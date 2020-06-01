@@ -22,7 +22,6 @@ tags: SystemVerilog
 &emsp;&emsp;b. 索引在数组前面时，定义组合型数组（packed）  
 &emsp;&emsp;&emsp;组合型数组存储是连续的，常常被视为向量
 &emsp;此外还有混合数组等，仔细理解下其索引方式和内存结构就好了。注意，非合并数组好形象是32bit（long int 是64bit） 一个单位，就算你只用了一个byte 也占32bit（Oh no，，，）
-            
 
 
 ![](week02.png)
