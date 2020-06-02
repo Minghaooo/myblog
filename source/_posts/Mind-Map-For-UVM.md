@@ -1,7 +1,7 @@
 ---
 title: MindMap from SV to UVM
 date: 2020-05-30 13:25:30
-tags: SystemVerilog
+tags: VLSI
 ---
 &emsp;&emsp;最近在学从SV到UVM的基础部分，会不定时更新系列知识点的思维导图总结。（麦屯VLSI的课竟然那么少，，，学点验证把）
 
