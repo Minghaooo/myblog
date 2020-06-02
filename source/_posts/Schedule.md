@@ -2,12 +2,24 @@
 title: Schedule
 date: 2020-05-28 01:56:46
 tags: 233
+top: true
 ---
-    个人暑期计划，看上去有点多。搭个Blog记录下学习内容。
+### June 2
+  - [ ] 577 review and discussion
+  - [ ] JAVA Zybook 30 minutes
+  - [x] SDC 整理2条命令
+  - [ ] CMOS VLSI Design 看20页
+  - [ ] 高级 ASIC 芯片综合 第一章 P0-28
+  - [ ] Algorithm 相关章节
+  - [ ] UVM课程每日章节
 <!--more-->
 
-暑期计划：
-DesignVision Constrain 语句复习
-JAVA CS400 学习
-Algorithm CS577 算法
-此外还要准备面试， 主要是VLSI方向
+6月学习计划：
+ - [ ] SDC 命令整理
+ - [ ] JAVA CS400 学习
+ - [ ] Algorithm CS577 算法
+ - [ ] 此外还要准备面试， 主要是VLSI方向
+ - [ ] 闲着无聊报了个路科的验证培训班（V1), 入门有点过于基础，Hoffman 万岁！
+
+每日计划:
+
