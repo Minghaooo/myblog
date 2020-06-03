@@ -5,13 +5,13 @@ tags: 233
 top: true
 ---
 ### June 2
-  - [ ] 577 review and discussion
-  - [ ] JAVA Zybook 30 minutes
+  - [x] 577 review and discussion
+  - [x] JAVA Zybook 30 minutes
   - [x] SDC 整理2条命令
-  - [ ] CMOS VLSI Design 看20页
-  - [ ] 高级 ASIC 芯片综合 第一章 P0-28
-  - [ ] Algorithm 相关章节
-  - [ ] UVM课程每日章节
+  - [x] CMOS VLSI Design 看20页
+  - [ ] 高级 ASIC 芯片综合 第一章 P0-28 //太高估自己了没做看完
+  - [x] Algorithm 相关章节 (太难了没看懂，，不过本来就是一周的量！)
+  - [x] UVM课程每日章节
 <!--more-->
 
 6月学习计划：
