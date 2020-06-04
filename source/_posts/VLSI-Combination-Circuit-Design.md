@@ -15,7 +15,8 @@ $$
   * all node voltages must transition between 0 and Vdd.
 * Advantages:
   * robustness, as long as there is no errors in logic design or manufacturing.
-  
+
+<!--more-->
 ### Bubble Pushing
 
 DeMorgan's law can be used to reduce the use of inverts.
