@@ -5,12 +5,7 @@ tags: 233
 top: true
 ---
 ### Jun 04
-  - [ ] JAVA Zybook 30 minutes
-  - [ ] SDC 整理2条命令
-  - [ ] CMOS VLSI Design 
-  - [ ] 高级 ASIC 芯片综合 
-  - [ ] Algorithm 第一章+第五章
-  - [ ] UVM课程每日章节
+ - [x] 今天看了一天577，总算有点看懂这门课了。。。
 <!--more-->
 
 每日计划:

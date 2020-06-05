@@ -4,10 +4,10 @@ date: 2020-05-29 23:46:49
 tags: CS577
 mathjax: true
 ---
-本系列整理自麦屯最菜Master对CS577的理解
+本系列整理自麦屯最菜 Master 对 CS577 的理解
 * 不会贴课件，仅作为课堂笔记。
-* 真正的从0开始！ （只学过点C语言，看过点数据结构，上课用到过C语言和python，，，因为整天都在敲 verilog 啊！
-* 课本是 UIUC 教授 Jeff Erickson 的 开源书本[Algorithm](http://jeffe.cs.illinois.edu/teaching/algorithms/)
+* 真正的从0开始！ （只学过点C语言，看过点数据结构，上课用到过C语言和 python，，，因为整天都在敲 verilog 啊！
+* 课本是 UIUC 教授 Jeff Erickson 的 开源书本 [Algorithm](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 <!--more-->
 ## <center>算法的时间复杂度<center>
 
