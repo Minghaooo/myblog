@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -206,10 +206,7 @@
 
       
           <p>每日计划:</p>
-<h3 id="jun-09"><a href="#jun-09" class="headerlink" title="jun 09"></a>jun 09</h3><ul>
-<li><input disabled="" type="checkbox"> </li>
-<li><input disabled="" type="checkbox"> java zybook</li>
-<li><input disabled="" type="checkbox"> 看书，，看了啥待会更新
+<h3 id="jun-19"><a href="#jun-19" class="headerlink" title="jun 19"></a>jun 19</h3><p>说实话，整天看来看去感觉没啥用</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/myblog/2020/05/28/Schedule/#more" rel="contents">
@@ -218,6 +215,79 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
+      <meta itemprop="name" content="MinghaoOoO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2020/06/20/CS577-02-Dynamic-Programming/" class="post-title-link" itemprop="url">CS577-02-Dynamic-Programming</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-20 09:10:59 / 修改时间：16:42:46" itemprop="dateCreated datePublished" datetime="2020-06-20T09:10:59+00:00">2020-06-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="动态规划的主要方法"><a href="#动态规划的主要方法" class="headerlink" title="动态规划的主要方法"></a>动态规划的主要方法</h3><h4 id="分段最小二乘"><a href="#分段最小二乘" class="headerlink" title="分段最小二乘"></a>分段最小二乘</h4><p>最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.</p>
+<p><img src="001.png" alt=""></p>
+<p>根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。</p>
+<p>于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量，对于每一个segment引入惩罚。</p>
+<p>$$\operatorname{OPT}(n)=e_{i, n}+C+\operatorname{OPT}(i-1)$$</p>
+<p>对于点 1..n, e表示每条线段拟合过后出现的error，而在本算法中新引入的是C，因此每多一个segment 就多一个惩罚，以此得到最合适的分段值。 OPT（i）表示从1到i分段的penalty的最优解。 本式子的意义在于： 对每一段函数，都会引入一个C， 加上这一段之前的 0 - i-1 这么一段的最优解。 以此公式进行递归就可以求解。</p>
+<p>$$OPT (j)=\min_{1 \leq i \leq j} \left(e_{i, j}+C+ OPT (i-1)\right)$$</p>
+<p>于是该问题的algorithm 如下图所示：<br><img src="002.png" alt=""></p>
+<p>对于该算法的理解：　首先初始化该算法，并且设置M[0]=0（递归的终止点）。算法首先接受到的是n，此为所有点的坐标。<br>其次， 依次对所有partition p1，p2,,,,pn 计算所有的拟合误差 error 值，(计算了一次后面就不用了)<br>然后根据分的段数，依次计算OPT(j)，得到最小值。我的理解是这样的：<br>j=1 时， 因为 i-1 只能为0， 所以其结果就是 只有一个点的OPT值。（其实没啥意义）<br>j=2 时， i 可以等于1 或者2. 当i = 1 时， 就是在第一个点上分段，i=2， 就是在第二个点上分。当i=2 是，p1 这个点就被送到了OPT(i-1)这个式子中去。<br>j=3时， i=1,2,3. i=1时 就是分一段。当i=2 时，讲i=1 丢给OPT(i-1)， i = 3时将1,2 丢给OPT(i-1).</p>
+<p>由此当 j = n 时，假设point 1.2.3….i…j…n<br>将n 送入式子中，会依次递归，比如在j出分段，将i 到 j-1 丢入OPT(i-1)中。 然后到i处分段时，可以依次类推。然而要注意的是，OPT(i-1)的值都已经存入了M[j]中，所以在搜索I 的时候，不需要每次都从头开始计算，其操作复杂度应该是O(1)的，这是动态规划的关键。<br>当然直接这样理解可能还是有问题，在这挖个坑，，以后再回来补充代码。</p>
+<p>得到了最优解，但是其实我们还需要traceback 才能知道应该在哪分段，(好烦啊)<br><img src="003.png" alt=""></p>
+<p>根据以上算法，其实可能并不复杂。就是在之前提到过的式子：</p>
+<p>$$OPT (j)=\min_{1 \leq i \leq j} \left(e_{i, j}+C+ OPT (i-1)\right)$$<br>中，将i打印出来。没啥毛病。 </p>
+
       
     </div>
 
@@ -269,7 +339,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -343,7 +413,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -428,7 +498,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -502,7 +572,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -580,7 +650,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -654,7 +724,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -728,7 +798,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -802,7 +872,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
+                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
               </span>
 
           
@@ -820,84 +890,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/myblog/2020/05/30/Mind-Map-For-UVM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/05/29/CS577-Introduction-to-Algorithm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
-      <meta itemprop="name" content="MinghaoOoO">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog/2020/05/29/CS577-Introduction-to-Algorithm/" class="post-title-link" itemprop="url">CS577 Introduction to Algorithm</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-29 23:46:49" itemprop="dateCreated datePublished" datetime="2020-05-29T23:46:49+00:00">2020-05-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-11 16:06:30" itemprop="dateModified" datetime="2020-06-11T16:06:30+00:00">2020-06-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本系列整理自麦屯最菜 Master 对 CS577 的理解</p>
-<ul>
-<li>不会贴课件，仅作为课堂笔记。</li>
-<li>真正的从0开始！ （只学过点C语言，看过点数据结构，上课用到过C语言和 python，，，因为整天都在敲 verilog 啊！</li>
-<li>课本是 UIUC 教授 Jeff Erickson 的 开源书本 <a href="http://jeffe.cs.illinois.edu/teaching/algorithms/" target="_blank" rel="noopener">Algorithm</a>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/myblog/2020/05/29/CS577-Introduction-to-Algorithm/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -988,7 +980,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/myblog/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

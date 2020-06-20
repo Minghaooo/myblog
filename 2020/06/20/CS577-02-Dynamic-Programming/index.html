@@ -22,20 +22,24 @@
     var CONFIG = {"hostname":"minghaooo.github.io","root":"/myblog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="转CS是不会转CS的，打死都不会转的。回国是大方向，VLSI 是总目标，CS 是必要工具，能多学点就多学点。">
+  <meta name="description" content="动态规划的主要方法分段最小二乘最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.  根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。 于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论TMH打死不转CS">
-<meta property="og:url" content="https://minghaooo.github.io/myblog/2020/05/27/%E8%AE%BA%E6%89%93%E6%AD%BB%E4%B8%8D%E8%BD%ACCS/index.html">
+<meta property="og:title" content="CS577-02-Dynamic-Programming">
+<meta property="og:url" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="转CS是不会转CS的，打死都不会转的。回国是大方向，VLSI 是总目标，CS 是必要工具，能多学点就多学点。">
+<meta property="og:description" content="动态规划的主要方法分段最小二乘最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.  根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。 于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-27T13:23:48.000Z">
-<meta property="article:modified_time" content="2020-06-20T16:42:46.096Z">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/001.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/002.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/003.png">
+<meta property="article:published_time" content="2020-06-20T09:10:59.000Z">
+<meta property="article:modified_time" content="2020-06-20T16:42:46.076Z">
 <meta property="article:author" content="MinghaoOoO">
-<meta property="article:tag" content="233">
+<meta property="article:tag" content="CS577">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/001.png">
 
-<link rel="canonical" href="https://minghaooo.github.io/myblog/2020/05/27/%E8%AE%BA%E6%89%93%E6%AD%BB%E4%B8%8D%E8%BD%ACCS/">
+<link rel="canonical" href="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/">
 
 
 <script id="page-configurations">
@@ -48,7 +52,7 @@
   };
 </script>
 
-  <title>论TMH打死不转CS | </title>
+  <title>CS577-02-Dynamic-Programming | </title>
   
 
 
@@ -160,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/05/27/%E8%AE%BA%E6%89%93%E6%AD%BB%E4%B8%8D%E8%BD%ACCS/">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/myblog/images/aaa.jpeg">
@@ -173,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          论TMH打死不转CS
+          CS577-02-Dynamic-Programming
         </h1>
 
         <div class="post-meta">
@@ -184,16 +188,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-05-27 13:23:48" itemprop="dateCreated datePublished" datetime="2020-05-27T13:23:48+00:00">2020-05-27</time>
+              <time title="创建时间：2020-06-20 09:10:59 / 修改时间：16:42:46" itemprop="dateCreated datePublished" datetime="2020-06-20T09:10:59+00:00">2020-06-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-20 16:42:46" itemprop="dateModified" datetime="2020-06-20T16:42:46+00:00">2020-06-20</time>
-              </span>
 
           
 
@@ -206,7 +204,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>转CS是不会转CS的，打死都不会转的。<br>回国是大方向，VLSI 是总目标，CS 是必要工具，能多学点就多学点。</p>
+        <h3 id="动态规划的主要方法"><a href="#动态规划的主要方法" class="headerlink" title="动态规划的主要方法"></a>动态规划的主要方法</h3><h4 id="分段最小二乘"><a href="#分段最小二乘" class="headerlink" title="分段最小二乘"></a>分段最小二乘</h4><p>最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.</p>
+<p><img src="001.png" alt=""></p>
+<p>根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。</p>
+<p>于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量，对于每一个segment引入惩罚。</p>
+<p>$$\operatorname{OPT}(n)=e_{i, n}+C+\operatorname{OPT}(i-1)$$</p>
+<p>对于点 1..n, e表示每条线段拟合过后出现的error，而在本算法中新引入的是C，因此每多一个segment 就多一个惩罚，以此得到最合适的分段值。 OPT（i）表示从1到i分段的penalty的最优解。 本式子的意义在于： 对每一段函数，都会引入一个C， 加上这一段之前的 0 - i-1 这么一段的最优解。 以此公式进行递归就可以求解。</p>
+<p>$$OPT (j)=\min_{1 \leq i \leq j} \left(e_{i, j}+C+ OPT (i-1)\right)$$</p>
+<p>于是该问题的algorithm 如下图所示：<br><img src="002.png" alt=""></p>
+<p>对于该算法的理解：　首先初始化该算法，并且设置M[0]=0（递归的终止点）。算法首先接受到的是n，此为所有点的坐标。<br>其次， 依次对所有partition p1，p2,,,,pn 计算所有的拟合误差 error 值，(计算了一次后面就不用了)<br>然后根据分的段数，依次计算OPT(j)，得到最小值。我的理解是这样的：<br>j=1 时， 因为 i-1 只能为0， 所以其结果就是 只有一个点的OPT值。（其实没啥意义）<br>j=2 时， i 可以等于1 或者2. 当i = 1 时， 就是在第一个点上分段，i=2， 就是在第二个点上分。当i=2 是，p1 这个点就被送到了OPT(i-1)这个式子中去。<br>j=3时， i=1,2,3. i=1时 就是分一段。当i=2 时，讲i=1 丢给OPT(i-1)， i = 3时将1,2 丢给OPT(i-1).</p>
+<p>由此当 j = n 时，假设point 1.2.3….i…j…n<br>将n 送入式子中，会依次递归，比如在j出分段，将i 到 j-1 丢入OPT(i-1)中。 然后到i处分段时，可以依次类推。然而要注意的是，OPT(i-1)的值都已经存入了M[j]中，所以在搜索I 的时候，不需要每次都从头开始计算，其操作复杂度应该是O(1)的，这是动态规划的关键。<br>当然直接这样理解可能还是有问题，在这挖个坑，，以后再回来补充代码。</p>
+<p>得到了最优解，但是其实我们还需要traceback 才能知道应该在哪分段，(好烦啊)<br><img src="003.png" alt=""></p>
+<p>根据以上算法，其实可能并不复杂。就是在之前提到过的式子：</p>
+<p>$$OPT (j)=\min_{1 \leq i \leq j} \left(e_{i, j}+C+ OPT (i-1)\right)$$<br>中，将i打印出来。没啥毛病。 </p>
 
     </div>
 
@@ -216,7 +226,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/myblog/tags/233/" rel="tag"># 233</a>
+              <a href="/myblog/tags/CS577/" rel="tag"># CS577</a>
           </div>
 
         
@@ -224,11 +234,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/myblog/2020/05/28/Schedule/" rel="next" title="Schedule">
-      Schedule <i class="fa fa-chevron-right"></i>
+    <a href="/myblog/2020/06/03/%E9%AB%98%E7%BA%A7ASIC%E7%BB%BC%E5%90%88-%E4%B8%80/" rel="prev" title="高级ASIC综合 一">
+      <i class="fa fa-chevron-left"></i> 高级ASIC综合 一
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -292,6 +302,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划的主要方法"><span class="nav-number">1.</span> <span class="nav-text">动态规划的主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分段最小二乘"><span class="nav-number">1.1.</span> <span class="nav-text">分段最小二乘</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -410,6 +421,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
