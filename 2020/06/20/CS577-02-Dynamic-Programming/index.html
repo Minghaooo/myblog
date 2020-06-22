@@ -22,18 +22,27 @@
     var CONFIG = {"hostname":"minghaooo.github.io","root":"/myblog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="动态规划的主要方法分段最小二乘最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.  根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。 于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量">
+  <meta name="description" content="动态规划是入门第二周的主题。突然就发现老师挂羊头卖狗肉，教科书其实是按照 Algorithm Design 讲的，然后就舒服了，，，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS577-02-Dynamic-Programming">
 <meta property="og:url" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="动态规划的主要方法分段最小二乘最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.  根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。 于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量">
+<meta property="og:description" content="动态规划是入门第二周的主题。突然就发现老师挂羊头卖狗肉，教科书其实是按照 Algorithm Design 讲的，然后就舒服了，，，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/001.png">
 <meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/002.png">
 <meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/003.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/004.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/005.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/006.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/007.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/009.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/008.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/010.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/011.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/06/20/CS577-02-Dynamic-Programming/012.png">
 <meta property="article:published_time" content="2020-06-20T09:10:59.000Z">
-<meta property="article:modified_time" content="2020-06-20T16:42:46.076Z">
+<meta property="article:modified_time" content="2020-06-22T03:38:53.951Z">
 <meta property="article:author" content="MinghaoOoO">
 <meta property="article:tag" content="CS577">
 <meta name="twitter:card" content="summary">
@@ -188,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-06-20 09:10:59 / 修改时间：16:42:46" itemprop="dateCreated datePublished" datetime="2020-06-20T09:10:59+00:00">2020-06-20</time>
+              <time title="创建时间：2020-06-20 09:10:59" itemprop="dateCreated datePublished" datetime="2020-06-20T09:10:59+00:00">2020-06-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-22 03:38:53" itemprop="dateModified" datetime="2020-06-22T03:38:53+00:00">2020-06-22</time>
+              </span>
 
           
 
@@ -204,7 +219,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="动态规划的主要方法"><a href="#动态规划的主要方法" class="headerlink" title="动态规划的主要方法"></a>动态规划的主要方法</h3><h4 id="分段最小二乘"><a href="#分段最小二乘" class="headerlink" title="分段最小二乘"></a>分段最小二乘</h4><p>最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.</p>
+        <p>动态规划是入门第二周的主题。突然就发现老师挂羊头卖狗肉，教科书其实是按照 Algorithm Design 讲的，然后就舒服了，，，</p>
+<a id="more"></a>
+
+<h3 id="动态规划的主要方法"><a href="#动态规划的主要方法" class="headerlink" title="动态规划的主要方法"></a>动态规划的主要方法</h3><h4 id="分段最小二乘"><a href="#分段最小二乘" class="headerlink" title="分段最小二乘"></a>分段最小二乘</h4><p>最小二乘一般用于线性函数拟合问题，本身并无难点。在本题中难点在于确定多少根线条可以获得比较好的拟合结果.</p>
 <p><img src="001.png" alt=""></p>
 <p>根据肉眼观察，肯定是3段线条能够比较好的拟合上图的散点。但是问题在于，换个图程序就不知道了，难道需要每次都手动告诉程序要分多少段吗？肯定没人愿意。</p>
 <p>于是我们对于本题的需求在于，想要找到合适的点，分合适的段，得到合适的结果。于是在本题中较好的方法是：加入另一个变量，对于每一个segment引入惩罚。</p>
@@ -217,6 +235,54 @@
 <p>得到了最优解，但是其实我们还需要traceback 才能知道应该在哪分段，(好烦啊)<br><img src="003.png" alt=""></p>
 <p>根据以上算法，其实可能并不复杂。就是在之前提到过的式子：</p>
 <p>$$OPT (j)=\min_{1 \leq i \leq j} \left(e_{i, j}+C+ OPT (i-1)\right)$$<br>中，将i打印出来。没啥毛病。 </p>
+<h4 id="背包问题-（双变量）"><a href="#背包问题-（双变量）" class="headerlink" title="背包问题 （双变量）"></a>背包问题 （双变量）</h4><p>背包问题与之前的不同在于其添加了一个变量。在之前的最小二乘中，每个点和每个点是想同的，而问题的目标仅仅在于使总penalty最小，其唯一输入是点坐标，而所求的结果是根据坐标点。 而背包问题中，有两个变量， 第一是输入是物品1…i，第二是背包容量w。在之前问题中，选择分多少段对于问题整体而言没有任何除了penalty之外的影响，因此只需要考虑分解成的小问题， 对于i 个物品该怎么分。<br>所以对本问题， 对于第i个物品，如果将其放入背包，则需要将背包中负重容量也相应减去$w_{i}$</p>
+<p>$$\operatorname{opt}(i, w)=\max \left(\operatorname{opt}(i-1, w), w_{i}+\operatorname{opt}\left(i-1, w-w_{i}\right)\right)$$</p>
+<p>接下来的图是一个example， 这个图一共有3个物品， 总容量为6<br><img src="004.png" alt=""><br>对于同样的递推公式，需要一个二维数组来进行记录。 首先考虑什么都不装的情况，那自然都是0， 然后是考虑w1这个物品，由于其重量为2，因此当背包负荷大于2时，就可以将该物品装入。<br>同理，依次考虑有i件物品， 并且背包容量从 0 到 w 时的情况，依次填入表格。最后的一个格子就是所需要的。<br>算法复杂度是O(n*w), n 是物品个数，而w 是背包容量。</p>
+<h4 id="Edited-Distance"><a href="#Edited-Distance" class="headerlink" title="Edited Distance"></a>Edited Distance</h4><p>这题在老师ppt上。 说实话感觉老师精简了难度。<br>这是用最少的操作数将一个字符串转化成另一个字符串。 而可用的字符串有以下三种：</p>
+<ul>
+<li>delete $S_{i}$</li>
+<li>Insert $t_{j}$</li>
+<li>substitution </li>
+</ul>
+<p>因此其状态转换方程式如下</p>
+<p><img src="005.png" alt=""></p>
+<p>以一下案例来理解：<br>SUNDAY 和 Saturday 到底需要几个呢？<br>思路还是跟之前一样，从base case 单个字母开始。 （初始化就跳过了）<br>对于接下来的每一个字母增加， 都依次根据D{i-1, j}, D{i,j-1}, D{i-1,j-1} 三种情况来计算其最短编辑距离。<br><img src="006.png" alt=""><br>如图， 因为其最后一个3 根据第一第二公式来算的话，它应该是4 和5， 而根据第三个公式应该是3， 因为 A 和 A 是相同的。 </p>
+<h4 id="Sequence-Alignment"><a href="#Sequence-Alignment" class="headerlink" title="Sequence Alignment"></a>Sequence Alignment</h4><p>序列对比 是 Generalized form of Edited distance.</p>
+<p>对于两个序列 X = {x1,x2, x3,x4….xn}和 Y = {y1,y2,y3,,,,yn},其目标是：</p>
+<ul>
+<li>Maximizes the similarity by giving weights to two types of difference<ul>
+<li>Gap: insert or deletes</li>
+<li>Mismatch - subsitute</li>
+</ul>
+</li>
+<li>Def. An alignment M is a set of ordered pairs $x_{i}-y_{j}$ such that each item occurs in at most one pair and no crossings.</li>
+</ul>
+<p>关于Crossing 的解释：<br>如果两个字符串没有“crossing”:$\text { if }(i, j),\left(i^{\prime}, j^{\prime}\right) \in M \text { and } i&lt;i^{\prime}, \text { then } j&lt;j^{\prime}$</p>
+<p>for example： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stop-</span><br><span class="line">-tops</span><br></pre></td></tr></table></figure>
+<p>那么 alignment M 就是 {(2,1),(3,2),(4,3)}， 其中i &lt; i’, j &lt; j’.<br>最终优化的函数是:<br><img src="007.png" width="60%" height="50%"></p>
+<p>直接上图<br><img src="009.png" alt=""></p>
+<p>可以看到，虽然有很多种pair ，但是我们需要cost 最小的那种.于是OPT递推方程是:<br><img src="008.png" width="60%" ></p>
+<p>这个公式min()项跟之前的有点类似，都是根据之前的结果算出当前M[i,j]</p>
+<img src="010.png" width="70%" >
+上图比较形象的解释了 edited distance 和 本题中的算法：从左到下方三个点中到达计算点的最小距离。
+
+<h4 id="Sequence-Alignment-via-Divide-and-Conquer"><a href="#Sequence-Alignment-via-Divide-and-Conquer" class="headerlink" title="Sequence Alignment via Divide and Conquer"></a>Sequence Alignment via Divide and Conquer</h4><p>人呐总是不知足，吃着碗里的望着锅里的。 给了个算法还不够，嫌弃人家占用资源，，，接下来应该是几种优化情况了。</p>
+<ul>
+<li>, the recurrence only needs information from the current column of A and the previous column of A. Thus we will “collapse” the array A to an m × 2 array </li>
+</ul>
+<p>大意就是，只需要存两个column 的值，就可以得到最后的结果：<br><img src="011.png" width="30%"><br>其原理应该也还是比较容易看明白的。实际上存的是当前值和前一个column的值，所以占用空间被简化了。当然，这样的话我们就找不到配对的具体情况了。  </p>
+<p>但是，要是真不能知道结果，这个方法也就没必要存在了。</p>
+<h5 id="A-Backward-Formulation-of-the-Dynamic-Program"><a href="#A-Backward-Formulation-of-the-Dynamic-Program" class="headerlink" title="A Backward Formulation of the Dynamic Program"></a>A Backward Formulation of the Dynamic Program</h5><p>这个名字有点意思，让我一下就想起了卷积神经网络的方向传输，，，，<br>Ok， 其实是把整个反过来，然后取中间一点，i,j 前半部分叫p(i,j), 后半部分叫f(i,j). </p>
+<p>devide and conquer 在这是从两边开始分别用的。<br>从（0，0）和{m,n}两个点分别开始靠拢，然后就得到中间那一条的路径长短，然后加起来比较下就好了。</p>
+<p>Divide: find index q that minimize f(q,n/2)+g(1,n/2) use dp</p>
+<ul>
+<li>align $X_q$ and $Y_(n/2)$<br>Conquer: recursively compute optimal alignment in each piece.</li>
+</ul>
+<img src="012.png" width="90%">
+ 这个算法ppt 上好像没有了，我先挖个坑，等等再来。（要考试了来不及啊！！！！
+
+
 
     </div>
 
@@ -238,7 +304,10 @@
     <a href="/myblog/2020/06/03/%E9%AB%98%E7%BA%A7ASIC%E7%BB%BC%E5%90%88-%E4%B8%80/" rel="prev" title="高级ASIC综合 一">
       <i class="fa fa-chevron-left"></i> 高级ASIC综合 一
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/myblog/2020/06/21/CS577-03-Graphs/" rel="next" title="CS577-03-Graphs">
+      CS577-03-Graphs <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -302,7 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划的主要方法"><span class="nav-number">1.</span> <span class="nav-text">动态规划的主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分段最小二乘"><span class="nav-number">1.1.</span> <span class="nav-text">分段最小二乘</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划的主要方法"><span class="nav-number">1.</span> <span class="nav-text">动态规划的主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分段最小二乘"><span class="nav-number">1.1.</span> <span class="nav-text">分段最小二乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#背包问题-（双变量）"><span class="nav-number">1.2.</span> <span class="nav-text">背包问题 （双变量）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Edited-Distance"><span class="nav-number">1.3.</span> <span class="nav-text">Edited Distance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sequence-Alignment"><span class="nav-number">1.4.</span> <span class="nav-text">Sequence Alignment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sequence-Alignment-via-Divide-and-Conquer"><span class="nav-number">1.5.</span> <span class="nav-text">Sequence Alignment via Divide and Conquer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#A-Backward-Formulation-of-the-Dynamic-Program"><span class="nav-number">1.5.1.</span> <span class="nav-text">A Backward Formulation of the Dynamic Program</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -318,7 +387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/myblog/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
