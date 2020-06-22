@@ -1,5 +1,69 @@
 ---
 title: CS577-03-Graphs
 date: 2020-06-21 22:37:49
-tags:
+tags: CS577
+mathjax: true
 ---
+说好的本周还是动态规划呢，老师的嘴骗人的鬼。。。。。蓝瘦
+<!--more-->
+
+### Baisc Definition
+
+#### Undirected Graphs
+ $$
+G = (V,E)
+ $$
+其中， V 是vertices， 也就是nodes
+E 是edges， 是连线
+默认的参数是： $n =| V |, m =| E |$
+一张图搞定一切： 
+<img src="001.png" width="50%">
+
+#### Adjacency Matrix 
+n-by-n matrix with $A_{u v}=1$ if $(u, v)$ is an edge
+<img src="002.png" width="50%">
+横着是U， 竖着是V，问题不大。
+$\operatorname{takes} \Theta\left(n^{2}\right)$ space.
+$\operatorname{takes} \Theta(n)$ time.
+
+#### Adjacency List
+感觉就是array+list，省空间好评。
+<img src="003.png" width="50%">
+前面黄色部分是表示当前的node，后面绿色的表示与当前node 连接的node
+Take only O(m+n) space
+
+
+ $\quad$ The adjacency matrix representation of a graph requires $O\left(n^{2}\right)$ space, while the adjacency list representation requires only $O(m+n)$ space.
+
+#### Cycles
+转一圈又回来了的，如上图中的 V 1 -> 2 -> 4 -> 5 ->3 ->1
+记住，首尾相等
+
+#### Trees
+如果不包含任何一个Cycle， 那么这就是一个Tree
+
+#### Rooted Trees 
+ choose a root node r and orient each edge away from r.
+
+### Graph Traversal
+BFS uses a queue and DFS uses a stack, they different in the data structure. 
+
+#### Breadth First Search 
+
+BFS explore outward from s in all possible directions, adding nodes one "layer" ad a time. 
+<img src="004.png" width="50%">
+选择一个node 作为顶点，那么其各层分别为 L1，L2， Ln-1
+L1是跟L0 的 S 相临的点，而L2 是跟L1相邻，但是不包含在L0 里面的，依次类推，，，， 
+$L _{ i +1}=$ all nodes that do not belong to an earlier layer, and that have an edge to a node in $L$
+
+
+#### Depth First Search 
+深度优先，找准一个方向寻找，不撞南墙不回头。
+可以看是否有cycle。
+
+### Connectivity in Directed Graphs
+有向的graph
+
+
+
+### Brinary Search Tree
