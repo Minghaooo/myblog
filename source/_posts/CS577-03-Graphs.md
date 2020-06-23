@@ -4,7 +4,7 @@ date: 2020-06-21 22:37:49
 tags: CS577
 mathjax: true
 ---
-说好的本周还是动态规划呢，老师的嘴骗人的鬼。。。。。蓝瘦
+挂羊头卖狗肉大法好。 与其说是graph 章节不如说是，动态规划之graph分支。
 <!--more-->
 
 ### Baisc Definition
@@ -78,3 +78,50 @@ $$\begin{aligned}
 \end{aligned}$$
 
 期中，左边的是T1，右边的是T2，就慢慢找总能找到的。
+
+### Shortest Paths in a Graph
+
+Shortest path problem. Given a directed graph $G =( V, E)$, with edge weights $c_{ vw }$ find shortest path from node s to node t.
+
+<img src="005.png" width="50%">
+
+有意思的点在于： the cost from one point to another point can be negative. 
+ In this problem, we have negative edge costs but no negative cycles.
+
+动态规划的主要思想是：subproblem i could be to find a shortest path using only the first i nodes. 
+
+这里用到一个比较有趣的assumption：
+ If $G$ has no negative cycles, then there is a shortest path from s to $t$ that is simple (i.e., does not repeat nodes), and hence has at most $n-1$ edges.
+
+这个递归公式可以写成：
+
+* If the path $P$ uses at most $i-1$ edges, then $OPT (i, v)= OPT (i-1, v)$   
+
+* If the path $P$ uses $i$ edges, and the first edge is $(v, w),$ then $OPT(i,v)=c_{vw} + \operatorname{OPT}(i-1, w)$
+
+If $i>0$ then
+$$
+OPT(i, v) = min(OPT(i − 1, v), min(OPT(i − 1, w) + c_{vw}))
+$$
+
+在公式中： i-1 表示有 这么多个edge，w 表示 v 的前一个点，$c_{vw}$表示 从w 到v 的cost。
+于是 $OPT(i − 1, v)$ 就是，只用i -1 个edge 的cost， 而 $OPT(i − 1, w) + c_{vw}$ 表示，用了第i 个点，从i-1 到第i 个点的cost 是C。 OPT中的v 表示从v 到t， 而同样 w 表示从 w点到t.
+
+所以实际上跟之前的动态规划还是一个意思。
+
+
+<img src="006.png" width="90%">
+<img src="007.png" width="30%">
+
+以表格为例： 最终目标是t, 而起点是 t,a,b,c ...e.
+表格的row 是出发点，而column 是允许经过的edge的数量，而 OPT 则应该越小越好。
+
+以a 为例，当经过0 个edge时，不可能到达t, 而经过1 个时，直接从a->t.此时OPT(o) 是 无穷，因此 OPT(1)一定是最小的。
+
+当经过两条edge时，就需要一个中间点 v ，此时搜索 只要用 $OPT(i-1,v) + C_{a->v}$ 然后问题就转化成了，从v->t 的OPT最小值问题。  
+
+<img src="008.png" width="70%">
+这是老师给的ppt上的算法，跟书上的其实是一个东西，不要被外表迷惑了。
+
+### Distance Vector protocal
+
