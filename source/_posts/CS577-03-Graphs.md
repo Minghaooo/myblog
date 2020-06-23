@@ -56,14 +56,25 @@ BFS explore outward from s in all possible directions, adding nodes one "layer" 
 L1是跟L0 的 S 相临的点，而L2 是跟L1相邻，但是不包含在L0 里面的，依次类推，，，， 
 $L _{ i +1}=$ all nodes that do not belong to an earlier layer, and that have an edge to a node in $L$
 
+BFS 可以用来找到最短距离(unweighted)。 将一个点设为顶点，数最小的层数就好了。 
 
 #### Depth First Search 
 深度优先，找准一个方向寻找，不撞南墙不回头。
 可以看是否有cycle。
 
-### Connectivity in Directed Graphs
-有向的graph
+###  Directed Graphs
+* directed acyclic graph is a directed graph with no directed cycles。
+* Any vertex in a dag that has no incoming vertices is called a source
+* any vertex with no outgoing edges is called a sink
 
+### Brinary Search Tree Optimal
 
+这个问题其实也不复杂，实际上就是每个点都有权重，然后又访问概率，找到最优的source。
+递归式：
 
-### Brinary Search Tree
+$$\begin{aligned}
+& \operatorname{optavg}(a, b | r) 
+=\left(\sum_{i=a}^{b} W[i]\right)+\operatorname{optavg}(a, r-1)+\operatorname{optavg}(r+1, b)
+\end{aligned}$$
+
+期中，左边的是T1，右边的是T2，就慢慢找总能找到的。
