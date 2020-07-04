@@ -4,7 +4,7 @@ date: 2020-06-23 20:21:23
 tags: CS577
 mathjax: true
 ---
-随机大法好。
+概率论没学好，猝。
 <!--more-->
 
 ### Contention Resolution: 

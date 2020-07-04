@@ -19,7 +19,8 @@ E 是edges， 是连线
 一张图搞定一切： 
 <img src="001.png" width="50%">
 
-#### Adjacency Matrix 
+#### Adjacency Matrix
+
 n-by-n matrix with $A_{u v}=1$ if $(u, v)$ is an edge
 <img src="002.png" width="50%">
 横着是U， 竖着是V，问题不大。
