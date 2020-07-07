@@ -4,7 +4,7 @@ date: 2020-07-05 21:15:42
 tags: JAVA
 ---
 
-<!--more-->
+
 ### Intro
 * each node has one key and up to two children. 
 * A B-tree with order K is a tree where nodes can have up to K-1 keys and up to K children. 
@@ -12,7 +12,7 @@ The order is the maximum number of children a node can have.
 Ex: In a B-tree with order 4, a nodes can have 1, 2, or 3 keys, and up to 4 children. 
 
 Order 是每个node 可以拥有的最大 children 的个数。
-
+ <!--more-->
 ### Insertion
 
 Given a new key, a 2-3-4 tree insert operation inserts the new key in the proper location such that all 2-3-4 tree properties are preserved. 
