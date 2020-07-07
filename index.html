@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -201,7 +201,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <ul>
+<li>Anaconda 是最好用的 python 版本管理器。</li>
+<li>Jupyter notebook 是最适合python学习的环境。</li>
+<li>以上两点不接受反驳。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2020/07/06/Instr-to-py/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -253,7 +265,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -267,35 +279,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
-<h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><ul>
+          <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><ul>
 <li>each node has one key and up to two children. </li>
 <li>A B-tree with order K is a tree where nodes can have up to K-1 keys and up to K children.<br>The order is the maximum number of children a node can have.<br>Ex: In a B-tree with order 4, a nodes can have 1, 2, or 3 keys, and up to 4 children. </li>
 </ul>
-<p>Order 是每个node 可以拥有的最大 children 的个数。</p>
-<h3 id="Insertion"><a href="#Insertion" class="headerlink" title="Insertion"></a>Insertion</h3><p>Given a new key, a 2-3-4 tree insert operation inserts the new key in the proper location such that all 2-3-4 tree properties are preserved.<br>New keys are always inserted into leaf nodes in a 2-3-4 tree. Insertion returns the leaf node where the key was inserted, or null if the key was already in the tree.</p>
-<p>An important operation during insertion is the split operation, which is done on every full node encountered during insertion traversal.<br>The split operation moves the middle key from a child node into the child’s parent node.<br>The first and last keys in the child node are moved into two separate nodes. The split operation returns the parent node that received the middle key from the child.</p>
-<p>核心思想是: the middle value is moved up into the parent node.</p>
-<p>Splitting an internal node allocates 2 new nodes, each with a single key, and the middle key from the split node moves up into the parent node.<br>Splitting the root node allocates 3 new nodes, each with a single key, and the root of the tree becomes a new node with a single key.</p>
-<p>插入1个 node 有三种情况:</p>
-<ol>
-<li>New key equals an existing key in node: No insertion takes place, and the node is not altered.</li>
-<li>New key is &lt; node’s first key : Existing keys in node are shifted right, and the new key becomes node’s first key.</li>
-<li>Node has only 1 key or new key is &lt; node’s middle key: Node’s middle key , if present, becomes last key, and new key becomes node’s middle key.</li>
-<li>None of the above : New key becomes node’s last key.</li>
-</ol>
-<h3 id="2-3-4-tree-rotations-and-fusion"><a href="#2-3-4-tree-rotations-and-fusion" class="headerlink" title="2-3-4 tree rotations and fusion"></a>2-3-4 tree rotations and fusion</h3><h4 id="Rotation"><a href="#Rotation" class="headerlink" title="Rotation"></a>Rotation</h4><p>Removing an item from a 2-3-4 tree may require rearranging keys to maintain tree properties.<br>A rotation is a rearrangement of keys between 3 nodes that maintains all 2-3-4 tree properties in the process.<br>The 2-3-4 tree removal algorithm uses rotations to transfer keys between sibling nodes.<br>A right rotation on a node causes the node to lose one key and the node’s right sibling to gain one key.<br>A left rotation on a node causes the node to lose one key and the node’s left sibling to gain one key.</p>
-<p>The rotation algorithm operates on a node, causing a net decrease of 1 key in that node. The key removed from the node moves up into the parent node, displacing a key in the parent that is moved to a sibling. No new nodes are allocated, nor existing nodes deallocated during rotation. The code simply copies key and child pointers.</p>
-<h4 id="Fusion"><a href="#Fusion" class="headerlink" title="Fusion"></a>Fusion</h4><p>When rearranging values in a 2-3-4 tree during deletions, rotations are not an option for nodes that do not have a sibling with 2 or more keys.<br>Fusion provides an additional option for increasing the number of keys in a node.<br>A fusion is a combination of 3 keys: 2 from adjacent sibling nodes that have 1 key each, and a third from the parent of the siblings.</p>
-<p>Fusion is the inverse operation of a split. The key taken from the parent node must be the key that is between the 2 adjacent siblings. The parent node must have at least 2 keys, with the exception of the root.</p>
-<p>Fusion of the root node is a special case that happens only when the root and the root’s 2 children each have 1 key. In this case, the 3 keys from the 3 nodes are combined into a single node that becomes the new root node.</p>
-<h4 id="Non-root-fusion"><a href="#Non-root-fusion" class="headerlink" title="Non-root fusion"></a>Non-root fusion</h4><p>For the non-root case, fusion operates on 2 adjacent siblings that each have 1 key. The key in the parent node that is between the 2 adjacent siblings is combined with the 2 keys from the two siblings to make a single, fused node. The parent node must have at least 2 keys.</p>
-<p>In the fusion algorithm below, the BTreeGetKeyIndex function returns an integer in the range [0,2] that indicates the index of the key within the node. The  BTreeSetChild functions sets the left, middle1, middle2, or right child pointer based on an index value of 0, 1, 2, or 3, respectively.</p>
-<h3 id="Merge-algorithm"><a href="#Merge-algorithm" class="headerlink" title="Merge algorithm"></a>Merge algorithm</h3><p>A B-Tree merge operates on a node with 1 key and increases the node’s keys to 2 or 3 using either a rotation or fusion.<br>A node’s 2 adjacent siblings are checked first during a merge, and if either has 2 or more keys, a key is transferred via a rotation.<br>Such a rotation increases the number of keys in the merged node from 1 to 2.<br>If all adjacent siblings of the node being merged have 1 key, then fusion is used to increase the number of keys in the node from 1 to 3. The merge operation can be performed on any node that has 1 key and a non-null parent node with at least 2 keys.</p>
-<h3 id="Remove-algorithm"><a href="#Remove-algorithm" class="headerlink" title="Remove algorithm"></a>Remove algorithm</h3><p>Given a key, a 2-3-4 tree remove operation removes the first-found matching key, restructuring the tree to preserve all 2-3-4 tree rules.<br>Each successful removal results in a key being removed from a leaf node.<br>Two cases are possible when removing a key, the first being that the key resides in a leaf node, and the second being that the key resides in an internal node.</p>
-<p>A key can only be removed from a leaf node that has 2 or more keys.<br>The preemptive merge removal scheme involves increasing the number of keys in all single-key, non-root nodes encountered during traversal.<br>The merging always happens before any key removal is attempted.<br>Preemptive merging ensures that any leaf node encountered during removal will have 2 or more keys, allowing a key to be removed from the leaf node without violating the 2-3-4 tree rules.</p>
-<p>To remove a key from an internal node, the key to be removed is replaced with the minimum key in the right child subtree (known as the key’s successor), or the maximum key in the leftmost child subtree.<br>First, the key chosen for replacement is stored in a temporary variable, then the chosen key is removed recursively, and lastly the temporary key replaces the key to be removed.</p>
-
+<p>Order 是每个node 可以拥有的最大 children 的个数。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2020/07/05/CS400-03-Binary-Tree/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -347,7 +343,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -421,7 +417,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -444,6 +440,82 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/06/26/JavaFX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
+      <meta itemprop="name" content="MinghaoOoO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2020/06/26/JavaFX/" class="post-title-link" itemprop="url">JavaFX</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-26 23:25:47" itemprop="dateCreated datePublished" datetime="2020-06-26T23:25:47+00:00">2020-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="GUIs-in-java"><a href="#GUIs-in-java" class="headerlink" title="GUIs in java:"></a>GUIs in java:</h3><ul>
+<li>AWT Abstract windowing toolkit. classes that create graphic components.(hard to use)</li>
+<li>Applets: run in web browsers.</li>
+<li>Swing: success</li>
+<li>JavaFX support desktop applications, but also web browses</li>
+</ul>
+<h3 id="JavaFX-Basics"><a href="#JavaFX-Basics" class="headerlink" title="JavaFX Basics"></a>JavaFX Basics</h3><ul>
+<li>rich set of commonly used UI components</li>
+</ul>
+<p>put classes into package application<br>class Main extends javafx.application.application<br>main() method calls launch(arg)<br>launch args initializes required GUI<br>start </p>
+
       
     </div>
 
@@ -495,7 +567,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -569,7 +641,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -650,7 +722,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -724,7 +796,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -798,7 +870,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 04:36:24" itemprop="dateModified" datetime="2020-07-07T04:36:24+00:00">2020-07-07</time>
               </span>
 
           
@@ -816,91 +888,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/myblog/2020/06/03/%E9%AB%98%E7%BA%A7ASIC%E7%BB%BC%E5%90%88-%E4%B8%80/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/06/03/VLSI-Combination-Circuit-Design/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
-      <meta itemprop="name" content="MinghaoOoO">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/myblog/2020/06/03/VLSI-Combination-Circuit-Design/" class="post-title-link" itemprop="url">VLSI Combination Circuit Design</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-03 00:39:06" itemprop="dateCreated datePublished" datetime="2020-06-03T00:39:06+00:00">2020-06-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 03:32:36" itemprop="dateModified" datetime="2020-07-07T03:32:36+00:00">2020-07-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Combinational circuit are those whose outputs only depends on the present inputs.<br>Since the delay of a logic gate depends on its output current I, load C, and output voltage swing $\Delta V$.<br>$$<br>t \propto \frac{C}{I} \Delta V<br>$$</p>
-<ul>
-<li>Static CMOS drawbacks:<ul>
-<li>requires both pMOS and nMOS while just on work at a time.</li>
-<li>all node voltages must transition between 0 and Vdd.</li>
-</ul>
-</li>
-<li>Advantages:<ul>
-<li>robustness, as long as there is no errors in logic design or manufacturing.</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/myblog/2020/06/03/VLSI-Combination-Circuit-Design/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -991,14 +978,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/myblog/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/myblog/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
