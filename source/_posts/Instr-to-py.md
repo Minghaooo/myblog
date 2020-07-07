@@ -29,7 +29,7 @@ tags: Python
 jupyter notebook --generate-config
 ```
 然后会返回一个路径， 如图所示 （因为我试过一次了所以提示不一养，但是返回的路径是对的）
-<img src="002.png" width="70%">
+<img src="002.png" width="50%">
 
 然后打开相应文件，可以用记事本打开
 <img src="003.png" width="70%">
