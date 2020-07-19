@@ -22,37 +22,28 @@
     var CONFIG = {"hostname":"minghaooo.github.io","root":"/myblog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;最近在学从SV到UVM的基础部分，会不定时更新系列知识点的思维导图总结。（麦屯VLSI的课竟然那么少，，，学点验证把）">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MindMap from SV to UVM">
-<meta property="og:url" content="https://minghaooo.github.io/myblog/2020/05/30/Mind-Map-For-UVM/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="https://minghaooo.github.io/myblog/page/3/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;最近在学从SV到UVM的基础部分，会不定时更新系列知识点的思维导图总结。（麦屯VLSI的课竟然那么少，，，学点验证把）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/05/30/Mind-Map-For-UVM/week01.png">
-<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/05/30/Mind-Map-For-UVM/week02.png">
-<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/05/30/Mind-Map-For-UVM/week03.png">
-<meta property="article:published_time" content="2020-05-30T13:25:30.000Z">
-<meta property="article:modified_time" content="2020-07-19T00:56:49.000Z">
 <meta property="article:author" content="MinghaoOoO">
-<meta property="article:tag" content="VLSI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://minghaooo.github.io/myblog/2020/05/30/Mind-Map-For-UVM/week01.png">
 
-<link rel="canonical" href="https://minghaooo.github.io/myblog/2020/05/30/Mind-Map-For-UVM/">
+<link rel="canonical" href="https://minghaooo.github.io/myblog/page/3/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>MindMap from SV to UVM | </title>
+  <title></title>
   
 
 
@@ -157,10 +148,9 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -176,9 +166,10 @@
       <meta itemprop="name" content="">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          MindMap from SV to UVM
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2020/05/30/Mind-Map-For-UVM/" class="post-title-link" itemprop="url">MindMap from SV to UVM</a>
+        </h2>
 
         <div class="post-meta">
 
@@ -210,57 +201,259 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>&emsp;&emsp;最近在学从SV到UVM的基础部分，会不定时更新系列知识点的思维导图总结。（麦屯VLSI的课竟然那么少，，，学点验证把）</p>
-<a id="more"></a>
-
-<h3 id="万物始于数据结构："><a href="#万物始于数据结构：" class="headerlink" title="万物始于数据结构："></a>万物始于数据结构：</h3><p>&emsp;1. 本章内容就觉得接口有点意思，可以内嵌很多内容，包括定义以及协议检查等。有意思的是硬件存在1，0，x, z四种逻辑，而软件只有两种。</p>
-<p>&emsp;2. 注意下 assign 可以传递x 和z， 而if 不可以。 所以在552课上做小 CPU demo 时老师把 if-else 禁了，，，后来看手把手教你设计CPU Risc-V 的时候看到作者有讲这点才懂。<br>不过不让用always 时序设计（全部用例化标准DFF） 和if  的verilog 有点像数电的连线实验课，其实还挺有意思。<br><img src="week01.png" alt=""></p>
-<h3 id="面向对象的SV"><a href="#面向对象的SV" class="headerlink" title="面向对象的SV:"></a>面向对象的SV:</h3><p>&emsp;1. 类的封装 继承 xxxx就不详细叙述了，我也是小白，，，C；<br>&emsp;2. 数组的组合型和非组合型：<br>&emsp;&emsp;a. 索引在数组名后方时，定义非组合型/非合并型（unpacked）<br>&emsp;&emsp;&emsp;bit [7:0] array1 [3] // 其中 bit[7:0]是向量长度，后面[3]是索引<br>&emsp;&emsp;b. 索引在数组前面时，定义组合型数组（packed）<br>&emsp;&emsp;&emsp;组合型数组存储是连续的，常常被视为向量<br>&emsp;此外还有混合数组等，仔细理解下其索引方式和内存结构就好了。注意，非合并数组好形象是32bit（long int 是64bit） 一个单位，就算你只用了一个byte 也占32bit（Oh no，，，）</p>
-<p><img src="week02.png" alt=""></p>
-<h3 id="随机约束以及虚函数"><a href="#随机约束以及虚函数" class="headerlink" title="随机约束以及虚函数"></a>随机约束以及虚函数</h3><p>&emsp;1. 随机约束是验证中比较重要的一个部分，但是函数和方法本身不难，难点应该在设计验证过程中找出正确的约束条件。<br>&emsp;2. 线程控制也没啥内容，跟linux 多线程编程差不多，而且应该是不可综合的。 具体内容Semphare 什么基本一致，有空整理整理537的内容。<br>&emsp;3. 虚方法的话大家应该都比较熟悉了，，选门OO的课就好了2333<br><img src="week03.png" alt=""></p>
-<p>未完待续。。。</p>
-
+          <p>&emsp;&emsp;最近在学从SV到UVM的基础部分，会不定时更新系列知识点的思维导图总结。（麦屯VLSI的课竟然那么少，，，学点验证把）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2020/05/30/Mind-Map-For-UVM/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/myblog/tags/VLSI/" rel="tag"># VLSI</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/myblog/2020/05/29/CS577-Introduction-to-Algorithm/" rel="prev" title="CS577 Introduction to Algorithm">
-      <i class="fa fa-chevron-left"></i> CS577 Introduction to Algorithm
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/myblog/2020/05/30/Intro-to-SystemVerilog/" rel="next" title="Intro to SystemVerilog">
-      Intro to SystemVerilog <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/05/29/CS577-Introduction-to-Algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
+      <meta itemprop="name" content="MinghaoOoO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2020/05/29/CS577-Introduction-to-Algorithm/" class="post-title-link" itemprop="url">CS577 Introduction to Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-29 23:46:49" itemprop="dateCreated datePublished" datetime="2020-05-29T23:46:49+00:00">2020-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 00:56:49" itemprop="dateModified" datetime="2020-07-19T00:56:49+00:00">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
     
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本系列整理自麦屯最菜 Master 对 CS577 的理解</p>
+<ul>
+<li>不会贴课件，仅作为课堂笔记。</li>
+<li>真正的从0开始！ （只学过点C语言，看过点数据结构，上课用到过C语言和 python，，，因为整天都在敲 verilog 啊！</li>
+<li>课本是 UIUC 教授 Jeff Erickson 的 开源书本 <a href="http://jeffe.cs.illinois.edu/teaching/algorithms/" target="_blank" rel="noopener">Algorithm</a>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2020/05/29/CS577-Introduction-to-Algorithm/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/05/28/Schedule/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
+      <meta itemprop="name" content="MinghaoOoO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2020/05/28/Schedule/" class="post-title-link" itemprop="url">Schedule</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-28 01:56:46" itemprop="dateCreated datePublished" datetime="2020-05-28T01:56:46+00:00">2020-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 00:56:49" itemprop="dateModified" datetime="2020-07-19T00:56:49+00:00">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>每日计划:</p>
+<h3 id="jun-24"><a href="#jun-24" class="headerlink" title="jun 24"></a>jun 24</h3><p>考完了期中考试。。。脑壳疼，但是！ 写作业吧</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2020/05/28/Schedule/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/05/27/%E8%AE%BA%E6%89%93%E6%AD%BB%E4%B8%8D%E8%BD%ACCS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/aaa.jpeg">
+      <meta itemprop="name" content="MinghaoOoO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/myblog/2020/05/27/%E8%AE%BA%E6%89%93%E6%AD%BB%E4%B8%8D%E8%BD%ACCS/" class="post-title-link" itemprop="url">论TMH打死不转CS</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-27 13:23:48" itemprop="dateCreated datePublished" datetime="2020-05-27T13:23:48+00:00">2020-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 00:56:49" itemprop="dateModified" datetime="2020-07-19T00:56:49+00:00">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>转CS是不会转CS的，打死都不会转的。<br>回国是大方向，VLSI 是总目标，CS 是必要工具，能多学点就多学点。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
   
   
   
 
 
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/myblog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/myblog/">1</a><a class="page-number" href="/myblog/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
 
           </div>
           
-    
-  <div class="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDMwOS8yNjc5OQ=="></div>
-  </div>
-  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -307,7 +500,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#万物始于数据结构："><span class="nav-number">1.</span> <span class="nav-text">万物始于数据结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的SV"><span class="nav-number">2.</span> <span class="nav-text">面向对象的SV:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机约束以及虚函数"><span class="nav-number">3.</span> <span class="nav-text">随机约束以及虚函数</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -426,24 +618,64 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-});
-</script>
 
 <script src="/myblog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/myblog/live2dw/assets/assets/koharu.model.json"},"display":{"position":"left"},"mobile":{"show":true,"position":"right"},"react":{"opacity":0.95}});</script></body>
 </html>

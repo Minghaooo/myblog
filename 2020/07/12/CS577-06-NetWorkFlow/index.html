@@ -22,20 +22,23 @@
     var CONFIG = {"hostname":"minghaooo.github.io","root":"/myblog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="记录遇到的 SystemVerilog 中与 Verilog 不同的特性， 内容涉及但不仅限于ECE551，552等课程。">
+  <meta name="description" content="每条边 e 关联一个容量， 计作 c. 存在单一源点 s 存在单一汇点 t 对一个网络，首先有 $0 \leq f(x) \leq c$ 对一个节点，有 $f_{in}(v) &#x3D; f_{out}(v)$, s 和 t 点除外。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Intro to SystemVerilog">
-<meta property="og:url" content="https://minghaooo.github.io/myblog/2020/05/30/Intro-to-SystemVerilog/index.html">
+<meta property="og:title" content="CS577-06-NetWorkFlow">
+<meta property="og:url" content="https://minghaooo.github.io/myblog/2020/07/12/CS577-06-NetWorkFlow/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="记录遇到的 SystemVerilog 中与 Verilog 不同的特性， 内容涉及但不仅限于ECE551，552等课程。">
+<meta property="og:description" content="每条边 e 关联一个容量， 计作 c. 存在单一源点 s 存在单一汇点 t 对一个网络，首先有 $0 \leq f(x) \leq c$ 对一个节点，有 $f_{in}(v) &#x3D; f_{out}(v)$, s 和 t 点除外。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-30T15:56:41.000Z">
-<meta property="article:modified_time" content="2020-07-19T00:56:49.000Z">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/07/12/CS577-06-NetWorkFlow/001.png">
+<meta property="og:image" content="https://minghaooo.github.io/myblog/2020/07/12/CS577-06-NetWorkFlow/001.png">
+<meta property="article:published_time" content="2020-07-12T00:11:07.000Z">
+<meta property="article:modified_time" content="2020-07-19T00:56:48.996Z">
 <meta property="article:author" content="MinghaoOoO">
-<meta property="article:tag" content="VLSI">
+<meta property="article:tag" content="CS577">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://minghaooo.github.io/myblog/2020/07/12/CS577-06-NetWorkFlow/001.png">
 
-<link rel="canonical" href="https://minghaooo.github.io/myblog/2020/05/30/Intro-to-SystemVerilog/">
+<link rel="canonical" href="https://minghaooo.github.io/myblog/2020/07/12/CS577-06-NetWorkFlow/">
 
 
 <script id="page-configurations">
@@ -48,7 +51,7 @@
   };
 </script>
 
-  <title>Intro to SystemVerilog | </title>
+  <title>CS577-06-NetWorkFlow | </title>
   
 
 
@@ -160,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/05/30/Intro-to-SystemVerilog/">
+    <link itemprop="mainEntityOfPage" href="https://minghaooo.github.io/myblog/2020/07/12/CS577-06-NetWorkFlow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/myblog/images/aaa.jpeg">
@@ -173,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Intro to SystemVerilog
+          CS577-06-NetWorkFlow
         </h1>
 
         <div class="post-meta">
@@ -185,14 +188,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-30 15:56:41" itemprop="dateCreated datePublished" datetime="2020-05-30T15:56:41+00:00">2020-05-30</time>
+              <time title="创建时间：2020-07-12 00:11:07" itemprop="dateCreated datePublished" datetime="2020-07-12T00:11:07+00:00">2020-07-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 00:56:49" itemprop="dateModified" datetime="2020-07-19T00:56:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 00:56:48" itemprop="dateModified" datetime="2020-07-19T00:56:48+00:00">2020-07-19</time>
               </span>
 
           
@@ -206,9 +209,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>记录遇到的 SystemVerilog 中与 Verilog 不同的特性， 内容涉及但不仅限于ECE551，552等课程。</p>
+        <ul>
+<li>每条边 e 关联一个容量， 计作 c.</li>
+<li>存在单一源点 s</li>
+<li>存在单一汇点 t</li>
+<li>对一个网络，首先有 $0 \leq f(x) \leq c$</li>
+<li>对一个节点，有 $f_{in}(v) = f_{out}(v)$, s 和 t 点除外。</li>
+</ul>
 <a id="more"></a>
-<h4 id="时序控制"><a href="#时序控制" class="headerlink" title="时序控制"></a>时序控制</h4><pre><code>“#” 延时控制</code></pre><h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+<h3 id="最大流问题与-Ford-Fulkerson-算法"><a href="#最大流问题与-Ford-Fulkerson-算法" class="headerlink" title="最大流问题与 Ford - Fulkerson 算法"></a>最大流问题与 Ford - Fulkerson 算法</h3><p>问题: 寻找从 s 到 t 的最大的流， 不存在单一的路径可以使流最大。</p>
+<p>剩余图$G_{f}$: 当设置完一次路径后，还剩余flow 的每条边容量组成的图。<br>forward edge(前向边):  $c-f(e)$， backward edge(后向边) $f(e)$</p>
+<p>增广路径: 对于简单路径 p, bottleneck(p,f) 是 p 上所有边关于流 f 的最小容量</p>
+<p>剩余图的增广路径: 如果一条路径是前向边，那么f(e)+bottleneck, 如果是后向边，那么减b。</p>
+<p>这里就不贴图了，主要还是概念，fulkerson 算法主要是计算剩余图，复杂度是O(cm),其中C是至多完成C个循环。 C 仍是网络流的最大值。</p>
+<h3 id="最大流与最小分割"><a href="#最大流与最小分割" class="headerlink" title="最大流与最小分割"></a>最大流与最小分割</h3><p>把这个图分成两个集合A 和 B，一个集合包含 S 一个集合包含 t。<br>一个割（A，B）的容量记为 C(A,B).是从集合A出来的最大容量的和。<br>cut 提供了整个flow 的上界。</p>
+<p>$$<br>v(f)=\sum_{v \in A}\left(f^{\text {out }}(v)-f^{\text {in }}(v)\right)<br>$$<br>其中 v 是 A 中除了 S 之外所有的点。 $v(f) \leq c(A,B)$.上界是最大流。</p>
+<p>通过残余图与剩余图的增广路径，可以反复计算得到最大流，而相应得到一个s-t割的最小容量。</p>
+<h3 id="选择好的增广路径"><a href="#选择好的增广路径" class="headerlink" title="选择好的增广路径"></a>选择好的增广路径</h3><p>选择好的增广路径的目标是降低算法的复杂度，不然可能真的进行C次增路径计算。而选择的方法是每次增广时候都增加 bottleneck 次。其次就是试用一个缩放参数，<br><img src="001.png" width="70%"></p>
+<h3 id="二分匹配问题："><a href="#二分匹配问题：" class="headerlink" title="二分匹配问题："></a>二分匹配问题：</h3><p>二分匹配问题就是寻找最大流问题，每条流的cap 为1， 因此获得的最大流的容量实际上就是分割匹配的结果。<br>另外，这个算法可以在O(m*n)的时间内找到最大匹配，其中m 是边数而n 是node 数。</p>
+<img src="001.png" width="70%">
     </div>
 
     
@@ -217,7 +236,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/myblog/tags/VLSI/" rel="tag"># VLSI</a>
+              <a href="/myblog/tags/CS577/" rel="tag"># CS577</a>
           </div>
 
         
@@ -226,12 +245,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/myblog/2020/05/30/Mind-Map-For-UVM/" rel="prev" title="MindMap from SV to UVM">
-      <i class="fa fa-chevron-left"></i> MindMap from SV to UVM
+    <a href="/myblog/2020/07/10/CS400-04-Exception/" rel="prev" title="CS400-040-Exception">
+      <i class="fa fa-chevron-left"></i> CS400-040-Exception
     </a></div>
       <div class="post-nav-item">
-    <a href="/myblog/2020/05/31/ComputerArchitecture-Cache/" rel="next" title="ComputerArchitecture - Cache">
-      ComputerArchitecture - Cache <i class="fa fa-chevron-right"></i>
+    <a href="/myblog/2020/07/17/ComputerArchitecture-02-Superscalar/" rel="next" title="ComputerArchitecture-02-Superscalar">
+      ComputerArchitecture-02-Superscalar <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -296,7 +315,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#时序控制"><span class="nav-number">1.</span> <span class="nav-text">时序控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大流问题与-Ford-Fulkerson-算法"><span class="nav-number">1.</span> <span class="nav-text">最大流问题与 Ford - Fulkerson 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最大流与最小分割"><span class="nav-number">2.</span> <span class="nav-text">最大流与最小分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择好的增广路径"><span class="nav-number">3.</span> <span class="nav-text">选择好的增广路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分匹配问题："><span class="nav-number">4.</span> <span class="nav-text">二分匹配问题：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -415,6 +434,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
