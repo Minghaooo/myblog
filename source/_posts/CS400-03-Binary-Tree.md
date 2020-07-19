@@ -3,10 +3,42 @@ title: CS400-03-Binary-tree
 date: 2020-07-05 21:15:42
 tags: JAVA
 ---
+<<<<<<< HEAD
 AVL tree 是一棵树，一颗有强迫症的树，树上的每一个结点都是平衡的。
 <!--more-->
 AVL 是一个每一个node 都平衡过的 二叉树。
 A node's balance factor is the left subtree height minus the right subtree height, which is 1, 0, or -1 in an AVL tree.
+=======
+
+
+### Intro
+* each node has one key and up to two children. 
+* A B-tree with order K is a tree where nodes can have up to K-1 keys and up to K children. 
+The order is the maximum number of children a node can have. 
+Ex: In a B-tree with order 4, a nodes can have 1, 2, or 3 keys, and up to 4 children. 
+
+Order 是每个node 可以拥有的最大 children 的个数。
+ <!--more-->
+### Insertion
+
+Given a new key, a 2-3-4 tree insert operation inserts the new key in the proper location such that all 2-3-4 tree properties are preserved. 
+New keys are always inserted into leaf nodes in a 2-3-4 tree. Insertion returns the leaf node where the key was inserted, or null if the key was already in the tree.
+
+An important operation during insertion is the split operation, which is done on every full node encountered during insertion traversal. 
+The split operation moves the middle key from a child node into the child's parent node. 
+The first and last keys in the child node are moved into two separate nodes. The split operation returns the parent node that received the middle key from the child.
+
+核心思想是: the middle value is moved up into the parent node.
+
+Splitting an internal node allocates 2 new nodes, each with a single key, and the middle key from the split node moves up into the parent node. 
+Splitting the root node allocates 3 new nodes, each with a single key, and the root of the tree becomes a new node with a single key.
+
+插入1个 node 有三种情况:
+1. New key equals an existing key in node: No insertion takes place, and the node is not altered.
+2. New key is < node's first key : Existing keys in node are shifted right, and the new key becomes node's first key.
+3. Node has only 1 key or new key is < node's middle key: Node's middle key , if present, becomes last key, and new key becomes node's middle key.
+4. None of the above : New key becomes node's last key.
+>>>>>>> 0a69ec48247cd4113c95783ef494624e816a76d1
 
 ### Insert
 A rotation is a local rearrangement of a BST that maintains the BST ordering property while rebalancing the tree.
