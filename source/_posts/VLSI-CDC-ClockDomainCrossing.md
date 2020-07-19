@@ -5,6 +5,9 @@ tags: VLSI
 mathjax: true
 ---
 
+
+<!--more-->
+
 ### 亚稳态 Metastability
 
 数字信号一般在 0 和 1 之间，但是有时候总会抽风所以处于不知道是什么的状态，导致输出结果无法预测。
