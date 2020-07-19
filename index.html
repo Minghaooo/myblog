@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -201,30 +201,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
-
-<h3 id="亚稳态-Metastability"><a href="#亚稳态-Metastability" class="headerlink" title="亚稳态 Metastability"></a>亚稳态 Metastability</h3><p>数字信号一般在 0 和 1 之间，但是有时候总会抽风所以处于不知道是什么的状态，导致输出结果无法预测。<br>亚稳态无法彻底避免，但是它带来的不好的影响可以被消除（ can not be avoided, but the detrimental effects can be neutralized.) </p>
-<p>亚稳态的出现归根到底是因为建立时间和保持时间不能满足要求。</p>
-<ul>
-<li>建立时间 （setup time）： 时钟沿到来之前数据需要保持稳定的时间。</li>
-<li>保持时间 （hold time）： 时钟沿到达之后数据需要保持的时间。</li>
-</ul>
-<h3 id="同步化问题-Synchronizers"><a href="#同步化问题-Synchronizers" class="headerlink" title="同步化问题 Synchronizers"></a>同步化问题 Synchronizers</h3><pre><code>这个 synchronizer 是将从别的时钟域过来的信号转换为同步信号的一个东西。
-
-Do I need to sample every value of a signal passed from one domain to another ? (这是啥问题...?)</code></pre><p>(1) it is permitted to miss samples that are passed between clock domains.</p>
-<ul>
-<li>在异步fifo 中 synchronized grey code counter do not need to capture every legal value from the opposite clock domain. </li>
-<li>但是 empty 和 full 信号必须被准确识别。</li>
-</ul>
-<p>（2）Every sample must be sampled.</p>
-<ul>
-<li><p>一个CDC 信号必须被 recognized or recognized, and acknowledged,在这个信号改变被允许之前。<br>####　two flip-flop synchronizer<br>第一个触发器将异步信号采样，并且等待一个节拍采样并送入同步时钟区， 并且等待一个时钟周期，这个信号叫 stage 1 信号。 然后 stage 1 被相同的时钟信号的触发器采样进入stage 2 ，这个stage 2 信号是稳定并且有效的同步信号。实际上stage 2 信号不稳定也是有可能的，但是从概率论上来讲已经是足够使用了。<br>这个概率是 MTBF mean time before failure 是指， 经过两级ff 以后任然不稳定的概率。 MTBF 越长越好。这个公式是：<br>$$<br> MTBF = \frac{1}{f_{clk} * f_{data} * X}<br>$$</p>
-<p>频率越高，数据变化速度越大，失败率越高。</p>
-</li>
-</ul>
-<h4 id="Three-flip-flop-synchronizer"><a href="#Three-flip-flop-synchronizer" class="headerlink" title="Three flip-flop synchronizer"></a>Three flip-flop synchronizer</h4><p>在某些高速计算中这个概率有点大，所以有时候会用到三级触发器。</p>
-<h4 id="Synchronizing-signals-from-the-sending-clock-domain"><a href="#Synchronizing-signals-from-the-sending-clock-domain" class="headerlink" title="Synchronizing signals from the sending clock domain"></a>Synchronizing signals from the sending clock domain</h4><p>不仅仅是在接收域的时钟需要flipflop 需要稳定，实际上发送域也需要。从组合逻辑出来的信号，一都会不是很稳定（combinational settling）, 然后会造成更多的亚稳态（相当于发送数据的变化频率变高了）</p>
-
+          <p>CDC 就是跨时域的信号处理，非常重要。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2020/07/18/VLSI-CDC-ClockDomainCrossing/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -276,7 +261,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -342,7 +327,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -422,7 +407,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -490,7 +475,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -568,7 +553,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -642,7 +627,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -716,7 +701,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -790,7 +775,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
@@ -866,7 +851,7 @@ Do I need to sample every value of a signal passed from one domain to another ? 
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 04:50:49" itemprop="dateModified" datetime="2020-07-19T04:50:49+00:00">2020-07-19</time>
+                <time title="修改时间：2020-07-19 04:53:56" itemprop="dateModified" datetime="2020-07-19T04:53:56+00:00">2020-07-19</time>
               </span>
 
           
