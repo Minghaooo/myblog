@@ -4,6 +4,9 @@ date: 2020-07-18 19:51:19
 tags: VLSI
 mathjax: true
 ---
+CDC 就是跨时域的信号处理，非常重要。
+
+<!--more-->
 
 ### 亚稳态 Metastability
 
