@@ -43,6 +43,46 @@ mathjax: true
 #### Synchronizing signals from the sending clock domain
 不仅仅是在接收域的时钟需要flipflop 需要稳定，实际上发送域也需要。从组合逻辑出来的信号，一都会不是很稳定（combinational settling）, 然后会造成更多的亚稳态（相当于发送数据的变化频率变高了）
 
+### Synchronizing fast signals into slow clock domains
+
+可能在接受器在采样前改变了两次，发送了两个信号。 或者就是离采样信号的时钟边沿太小了。有两个方向可以解决这个问题：
+    * 开环设计，但是保证信号是被采样到的。
+    * 闭环设计，发送一个接收到到的请求信号。
+
+#### Requirement for reliable signal passing between clock domains
+    从slow 到fast 的时候，如果fast 的clk 在slow 的1.5x 以上，那么这种情况下CDC 就被认为问题不大， 因为会被采样一到两次以上（我也觉得没啥问题）。所以一般情况下用2级ff 就可以搞定了。
+
+    CDC 信号应该要比接受域信号宽1到1.5倍。（must be stable for three destination clock edges
+    
+### passing a fast CDC pulse (!)
+如果CDC信号在接受域的波长 只有一个周期， 那么可能无法被采样到。但是当CDC 信号比较长，但是又不够长的时候（比如刚好两个CLK， 那么有可能这个pulse 刚好在两个rising clk edge 的边边上，那么可能再第一个edge 造成setup time 不够，第二个clk hold time 不够， 然后就无法成功建立波形。
+
+#### Open loop 
+Advantage：
+* the fastest way to pass signals 
+
+Disadvantage:
+* three edges design requirement 是凑上去的，如果涉及有改动的话也不一定能注意到。 因此可以加个assert 来保证。（这是缺点吗。，感觉可能是）
+
+#### closed loop
+接收到以后发送一个确认信号。
+ * AD： very safe.
+ * Dis: have delay.
+
+
+### passing multiple signals between clock signals.
+
+在多个信号传输的时候 两拍ff 就没啥用了。原因是多个bit 跨时域传输时候，每个ff 会有clk skew, 然后就会有采样时间不一样的抖动问题。（发送信号也可能有clk 抖动。）
+
+可以用以下一个方案解决：
+#### consolidate 多个CDC 信号变成一个信号。
+感觉是删除的意思，
+##### example 1： 
+有一个load 信号，还有一个 enable 信号。如果要求同时进入的话，可能会因为clk skew造成一个信号无法读入，但是因为有3 clk 的保证，所以还是能采样到的，但是可能相差一个节拍。然后就造成了错位。但是实际上并不需要两个信号来完成这个操作。
+
+
+* multiple cycle path formulation.
+* using gray code.
 
 
 
