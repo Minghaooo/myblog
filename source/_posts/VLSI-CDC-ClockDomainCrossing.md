@@ -19,16 +19,14 @@ CDC 就是跨时域的信号处理，非常重要。
 
 
 ### 同步化问题 Synchronizers
-
-    这个 synchronizer 是将从别的时钟域过来的信号转换为同步信号的一个东西。
-
-    Do I need to sample every value of a signal passed from one domain to another ? (这是啥问题...?)
+这个 synchronizer 是将从别的时钟域过来的信号转换为同步信号的一个东西。
+Do I need to sample every value of a signal passed from one domain to another ? (这是啥问题...?)
 
 (1) it is permitted to miss samples that are passed between clock domains.
  * 在异步fifo 中 synchronized grey code counter do not need to capture every legal value from the opposite clock domain. 
  * 但是 empty 和 full 信号必须被准确识别。
 
-（2）Every sample must be sampled.
+(2)Every sample must be sampled.
 *  一个CDC 信号必须被 recognized or recognized, and acknowledged,在这个信号改变被允许之前。
 ####　two flip-flop synchronizer
 第一个触发器将异步信号采样，并且等待一个节拍采样并送入同步时钟区， 并且等待一个时钟周期，这个信号叫 stage 1 信号。 然后 stage 1 被相同的时钟信号的触发器采样进入stage 2 ，这个stage 2 信号是稳定并且有效的同步信号。实际上stage 2 信号不稳定也是有可能的，但是从概率论上来讲已经是足够使用了。
@@ -49,13 +47,13 @@ CDC 就是跨时域的信号处理，非常重要。
 ### Synchronizing fast signals into slow clock domains
 
 可能在接受器在采样前改变了两次，发送了两个信号。 或者就是离采样信号的时钟边沿太小了。有两个方向可以解决这个问题：
-    * 开环设计，但是保证信号是被采样到的。
-    * 闭环设计，发送一个接收到到的请求信号。
+* 开环设计，但是保证信号是被采样到的。
+* 闭环设计，发送一个接收到到的请求信号。
 
 #### Requirement for reliable signal passing between clock domains
-    从slow 到fast 的时候，如果fast 的clk 在slow 的1.5x 以上，那么这种情况下CDC 就被认为问题不大， 因为会被采样一到两次以上（我也觉得没啥问题）。所以一般情况下用2级ff 就可以搞定了。
+从slow 到fast 的时候，如果fast 的clk 在slow 的1.5x 以上，那么这种情况下CDC 就被认为问题不大， 因为会被采样一到两次以上（我也觉得没啥问题）。所以一般情况下用2级ff 就可以搞定了。
 
-    CDC 信号应该要比接受域信号宽1到1.5倍。（must be stable for three destination clock edges
+CDC 信号应该要比接受域信号宽1到1.5倍。（must be stable for three destination clock edges
     
 ### passing a fast CDC pulse (!)
 如果CDC信号在接受域的波长 只有一个周期， 那么可能无法被采样到。但是当CDC 信号比较长，但是又不够长的时候（比如刚好两个CLK， 那么有可能这个pulse 刚好在两个rising clk edge 的边边上，那么可能再第一个edge 造成setup time 不够，第二个clk hold time 不够， 然后就无法成功建立波形。
@@ -69,8 +67,8 @@ Disadvantage:
 
 #### closed loop
 接收到以后发送一个确认信号。
- * AD： very safe.
- * Dis: have delay.
+* AD： very safe.
+* Dis: have delay.
 
 
 ### passing multiple signals between clock signals.
