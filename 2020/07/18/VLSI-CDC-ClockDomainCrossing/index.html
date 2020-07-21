@@ -30,7 +30,7 @@
 <meta property="og:description" content="CDC 就是跨时域的信号处理，非常重要。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-18T19:51:19.000Z">
-<meta property="article:modified_time" content="2020-07-20T06:25:53.883Z">
+<meta property="article:modified_time" content="2020-07-21T02:22:48.432Z">
 <meta property="article:author" content="MinghaoOoO">
 <meta property="article:tag" content="VLSI">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-20 06:25:53" itemprop="dateModified" datetime="2020-07-20T06:25:53+00:00">2020-07-20</time>
+                <time title="修改时间：2020-07-21 02:22:48" itemprop="dateModified" datetime="2020-07-21T02:22:48+00:00">2020-07-21</time>
               </span>
 
           
@@ -253,9 +253,22 @@
 <h3 id="passing-multiple-signals-between-clock-signals"><a href="#passing-multiple-signals-between-clock-signals" class="headerlink" title="passing multiple signals between clock signals."></a>passing multiple signals between clock signals.</h3><p>在多个信号传输的时候 两拍ff 就没啥用了。原因是多个bit 跨时域传输时候，每个ff 会有clk skew, 然后就会有采样时间不一样的抖动问题。（发送信号也可能有clk 抖动。）</p>
 <p>可以用以下一个方案解决：</p>
 <h4 id="consolidate-多个CDC-信号变成一个信号。"><a href="#consolidate-多个CDC-信号变成一个信号。" class="headerlink" title="consolidate 多个CDC 信号变成一个信号。"></a>consolidate 多个CDC 信号变成一个信号。</h4><p>感觉是删除的意思，</p>
-<h5 id="example-1："><a href="#example-1：" class="headerlink" title="example 1："></a>example 1：</h5><p>有一个load 信号，还有一个 enable 信号。如果要求同时进入的话，可能会因为clk skew造成一个信号无法读入，但是因为有3 clk 的保证，所以还是能采样到的，但是可能相差一个节拍。然后就造成了错位。但是实际上并不需要两个信号来完成这个操作。</p>
+<h5 id="example-1-（两个相同的信号）："><a href="#example-1-（两个相同的信号）：" class="headerlink" title="example 1 （两个相同的信号）："></a>example 1 （两个相同的信号）：</h5><p>有一个load 信号，还有一个 enable 信号。如果要求同时进入的话，可能会因为clk skew造成一个信号无法读入，但是因为有3 clk 的保证，所以还是能采样到的，但是可能相差一个节拍。然后就造成了错位。但是实际上并不需要两个信号来完成这个操作。</p>
+<h5 id="example-2-（两个相差1clk-的信号）："><a href="#example-2-（两个相差1clk-的信号）：" class="headerlink" title="example 2 （两个相差1clk 的信号）："></a>example 2 （两个相差1clk 的信号）：</h5><p>如果用两个信号控制pipeline的两级寄存器，那么 aen1 和aen2 有可能以为clk skew 而无法被准时准确识别到，而造成该信号延后一个clk（和 example 中一样）然后造成pipeline 的错误。正确的方法是应该只传输一个信号，而在接受域里用寄存器生成第二级流水线的控制信号（delay 一个周期）。</p>
+<h5 id="example-3-编码的两个信号"><a href="#example-3-编码的两个信号" class="headerlink" title="example 3 (编码的两个信号)"></a>example 3 (编码的两个信号)</h5><p>如果信号是被编码的，那么由于clk skew造成的错误可能导致解码错误。这时候应该用 Multi-cycle Path (MCP) 和 fifo 来解决问题。</p>
 <ul>
-<li>multiple cycle path formulation.</li>
+<li>closed loop -MCP with feedback</li>
+<li>closed loop -MCP with acknowledged feedback</li>
+</ul>
+<p>或者</p>
+<ul>
+<li>Asynchronous fifo implementation </li>
+<li>2-deep fifo implementation</li>
+</ul>
+<h4 id="MCP-formulation"><a href="#MCP-formulation" class="headerlink" title="MCP formulation"></a>MCP formulation</h4><p>实际上SPI 用的就是这个原理。 在发送数据时候发送一个跟数据匹配好的时钟信号。先发送数据以后，过几个时钟周期，这个时钟信号才发送（实际上是个采样使能信号，当信号为高电平时，接受域采样。这是setup 和 hold time 都是满足时序要求的。</p>
+<h5 id="MCP-formulation-using-a-synchronized-enable-pulse"><a href="#MCP-formulation-using-a-synchronized-enable-pulse" class="headerlink" title="MCP formulation using a synchronized enable pulse"></a>MCP formulation using a synchronized enable pulse</h5><p>这是最常见的方法。还是添加一个enable 信号。</p>
+<h5 id="MCP-closed-loop-with-feedback"><a href="#MCP-closed-loop-with-feedback" class="headerlink" title="MCP closed loop with feedback"></a>MCP closed loop with feedback</h5><p>pass the enable signal back to the sending clock domain.<br>这个信号被发送域接收到以后，发送域就可以改变发送的数据。</p>
+<ul>
 <li>using gray code.</li>
 </ul>
 
@@ -343,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#亚稳态-Metastability"><span class="nav-number">1.</span> <span class="nav-text">亚稳态 Metastability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步化问题-Synchronizers"><span class="nav-number">2.</span> <span class="nav-text">同步化问题 Synchronizers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Three-flip-flop-synchronizer"><span class="nav-number">2.1.</span> <span class="nav-text">Three flip-flop synchronizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Synchronizing-signals-from-the-sending-clock-domain"><span class="nav-number">2.2.</span> <span class="nav-text">Synchronizing signals from the sending clock domain</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronizing-fast-signals-into-slow-clock-domains"><span class="nav-number">3.</span> <span class="nav-text">Synchronizing fast signals into slow clock domains</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Requirement-for-reliable-signal-passing-between-clock-domains"><span class="nav-number">3.1.</span> <span class="nav-text">Requirement for reliable signal passing between clock domains</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passing-a-fast-CDC-pulse"><span class="nav-number">4.</span> <span class="nav-text">passing a fast CDC pulse (!)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Open-loop"><span class="nav-number">4.1.</span> <span class="nav-text">Open loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#closed-loop"><span class="nav-number">4.2.</span> <span class="nav-text">closed loop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passing-multiple-signals-between-clock-signals"><span class="nav-number">5.</span> <span class="nav-text">passing multiple signals between clock signals.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#consolidate-多个CDC-信号变成一个信号。"><span class="nav-number">5.1.</span> <span class="nav-text">consolidate 多个CDC 信号变成一个信号。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#example-1："><span class="nav-number">5.1.1.</span> <span class="nav-text">example 1：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#亚稳态-Metastability"><span class="nav-number">1.</span> <span class="nav-text">亚稳态 Metastability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步化问题-Synchronizers"><span class="nav-number">2.</span> <span class="nav-text">同步化问题 Synchronizers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Three-flip-flop-synchronizer"><span class="nav-number">2.1.</span> <span class="nav-text">Three flip-flop synchronizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Synchronizing-signals-from-the-sending-clock-domain"><span class="nav-number">2.2.</span> <span class="nav-text">Synchronizing signals from the sending clock domain</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronizing-fast-signals-into-slow-clock-domains"><span class="nav-number">3.</span> <span class="nav-text">Synchronizing fast signals into slow clock domains</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Requirement-for-reliable-signal-passing-between-clock-domains"><span class="nav-number">3.1.</span> <span class="nav-text">Requirement for reliable signal passing between clock domains</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passing-a-fast-CDC-pulse"><span class="nav-number">4.</span> <span class="nav-text">passing a fast CDC pulse (!)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Open-loop"><span class="nav-number">4.1.</span> <span class="nav-text">Open loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#closed-loop"><span class="nav-number">4.2.</span> <span class="nav-text">closed loop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passing-multiple-signals-between-clock-signals"><span class="nav-number">5.</span> <span class="nav-text">passing multiple signals between clock signals.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#consolidate-多个CDC-信号变成一个信号。"><span class="nav-number">5.1.</span> <span class="nav-text">consolidate 多个CDC 信号变成一个信号。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#example-1-（两个相同的信号）："><span class="nav-number">5.1.1.</span> <span class="nav-text">example 1 （两个相同的信号）：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#example-2-（两个相差1clk-的信号）："><span class="nav-number">5.1.2.</span> <span class="nav-text">example 2 （两个相差1clk 的信号）：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#example-3-编码的两个信号"><span class="nav-number">5.1.3.</span> <span class="nav-text">example 3 (编码的两个信号)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MCP-formulation"><span class="nav-number">5.2.</span> <span class="nav-text">MCP formulation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MCP-formulation-using-a-synchronized-enable-pulse"><span class="nav-number">5.2.1.</span> <span class="nav-text">MCP formulation using a synchronized enable pulse</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MCP-closed-loop-with-feedback"><span class="nav-number">5.2.2.</span> <span class="nav-text">MCP closed loop with feedback</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
