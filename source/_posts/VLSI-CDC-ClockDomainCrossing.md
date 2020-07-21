@@ -100,9 +100,22 @@ Disadvantage:
  
 ##### MCP closed loop with feedback
 pass the enable signal back to the sending clock domain.
-这个信号被发送域接收到以后，发送域就可以改变发送的数据。
-* using gray code.
+这个信号被发送域接收到以后，发送域就可以改变发送的数据。 
 
 
+### Counters (fifo)
+
+#### grey code
+
+在fifo 中， grey code 是经常被使用的， 但是grey code 不需要被采样，而只是 full 和 empty 的信号比较重要。是否有一种编码方式可以被用来跨过CDC信号呢？没有。
+grey code 每次仅翻转一次，
+
+#### binary counter
+把 binary counter 进行跨时钟域传送跟传送多个信号是一样的情况， 因为同时会有多个信号翻转。可能会错误的触发full 或者empty 的信号
+
+#### Implementation (坑)
+
+
+### Fifo （2 kinds）
 
 
