@@ -78,11 +78,29 @@ Disadvantage:
 可以用以下一个方案解决：
 #### consolidate 多个CDC 信号变成一个信号。
 感觉是删除的意思，
-##### example 1： 
+##### example 1 （两个相同的信号）： 
 有一个load 信号，还有一个 enable 信号。如果要求同时进入的话，可能会因为clk skew造成一个信号无法读入，但是因为有3 clk 的保证，所以还是能采样到的，但是可能相差一个节拍。然后就造成了错位。但是实际上并不需要两个信号来完成这个操作。
+##### example 2 （两个相差1clk 的信号）：
+如果用两个信号控制pipeline的两级寄存器，那么 aen1 和aen2 有可能以为clk skew 而无法被准时准确识别到，而造成该信号延后一个clk（和 example 中一样）然后造成pipeline 的错误。正确的方法是应该只传输一个信号，而在接受域里用寄存器生成第二级流水线的控制信号（delay 一个周期）。
+##### example 3 (编码的两个信号)
+如果信号是被编码的，那么由于clk skew造成的错误可能导致解码错误。这时候应该用 Multi-cycle Path (MCP) 和 fifo 来解决问题。
+* closed loop -MCP with feedback
+* closed loop -MCP with acknowledged feedback
 
+或者
+* Asynchronous fifo implementation 
+* 2-deep fifo implementation
 
-* multiple cycle path formulation.
+#### MCP formulation 
+
+实际上SPI 用的就是这个原理。 在发送数据时候发送一个跟数据匹配好的时钟信号。先发送数据以后，过几个时钟周期，这个时钟信号才发送（实际上是个采样使能信号，当信号为高电平时，接受域采样。这是setup 和 hold time 都是满足时序要求的。
+
+##### MCP formulation using a synchronized enable pulse
+这是最常见的方法。还是添加一个enable 信号。
+ 
+##### MCP closed loop with feedback
+pass the enable signal back to the sending clock domain.
+这个信号被发送域接收到以后，发送域就可以改变发送的数据。
 * using gray code.
 
 
