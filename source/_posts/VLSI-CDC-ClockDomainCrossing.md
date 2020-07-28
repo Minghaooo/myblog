@@ -116,6 +116,15 @@ grey code 每次仅翻转一次，
 #### Implementation (坑)
 
 
-### Fifo （2 kinds）
+### Fifo 
+FIFO 的设计难度在于 生成 pointer 与 找到一个合适的方法生成full 和 empty 信号。
+
+#### Pointer 
+跟pc 指针一样，Wpc 永远指向下一个要写入的地址。Rpc 指向要被读的地址。
+在reset 的时候，Wpc 和 Rpc 都指向0，此时信号是empty。 当wPc 写入时， wpc +1， 此时 Rpc 还是烟来这样， 因此empty 信号清零。 因为Rpc 永远指向被读的那个，所以不需要花2个clk 时间去读，因为已经被读出来了。
+
+在Wpc 和 Rpc 相等的时候， Fifo 是empty 的。但是full 的信号就不太好区分，，因此此时需要一个额外的bit 来计数。 当这个bit 超过一周时+1. 当MSB 不同时，full， 不然就是empty。
+
+
 
 
