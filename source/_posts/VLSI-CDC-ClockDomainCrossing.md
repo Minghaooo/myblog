@@ -126,5 +126,15 @@ FIFO 的设计难度在于 生成 pointer 与 找到一个合适的方法生成f
 在Wpc 和 Rpc 相等的时候， Fifo 是empty 的。但是full 的信号就不太好区分，，因此此时需要一个额外的bit 来计数。 当这个bit 超过一周时+1. 当MSB 不同时，full， 不然就是empty。
 
 
+#### binary code fifo
+   可以作为reference， 可以保证行为正确，但是综合出来不太好测试，因为上升沿等误差很小。
+
+#### Grey code
+   这里有点意思，如果是4为grey code 的话，因为MSB代表圈数，所以用三位来表示。 具体为，从0-7， 然后7-0再一个轮回。
+
+#### empty signal
+FIFO is empty when read pointer and the synchronized write pointer are equal.
+writer pointer 要被同步到 read_clk 去来判断。
+
 
 
